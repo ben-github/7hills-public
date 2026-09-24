@@ -1,0 +1,197 @@
+backend:
+  name: github
+  repo: ben-github/7hills-static
+  branch: main
+
+# Where uploaded media gets stored in the repo
+media_folder: "src/assets/images"
+# Where those files are served from
+public_folder: "/assets/images"
+
+site_url: https://7hills.iguanaworks.net
+display_url: https://7hills.iguanaworks.net
+
+collections:
+
+  # ── Simple pages ─────────────────────────────────────────────
+  - name: "pages"
+    label: "Pages"
+    files:
+
+      - name: "home"
+        label: "Home Page"
+        file: "src/content/index.md"
+        fields:
+          - { label: "About Blurb", name: "body", widget: "markdown" }
+          - { label: "Banner Heading", name: "banner_heading", widget: "string" }
+          - { label: "Banner Button Text", name: "banner_button_text", widget: "string" }
+          - { label: "Banner Button Link", name: "banner_button_url", widget: "string" }
+          - label: "Background Slides"
+            name: "background_slides"
+            widget: "list"
+            field: { label: "Image", name: "image", widget: "image" }
+          - label: "Feature Boxes"
+            name: "feature_boxes"
+            widget: "list"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - { label: "Button Text", name: "link_text", widget: "string" }
+              - { label: "Button URL", name: "url", widget: "string" }
+
+      - name: "mission-history"
+        label: "Mission & History"
+        file: "src/content/about/mission-history.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Order on About Us page (1 = first)", name: "card_order", widget: "number" }
+          - { label: "Preview Image (shown on About Us page)", name: "card_image", widget: "image" }
+          - { label: "Short Description", name: "card_description", widget: "string" }
+          - { label: "Link Text", name: "card_link_text", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - name: "conductor"
+        label: "Conductor"
+        file: "src/content/about/conductor.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Conductor Name", name: "conductor_name", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Order on About Us page (1 = first)", name: "card_order", widget: "number" }
+          - { label: "Preview Image (shown on About Us page)", name: "card_image", widget: "image" }
+          - { label: "Short Description", name: "card_description", widget: "string" }
+          - { label: "Link Text", name: "card_link_text", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - name: "orchestra"
+        label: "Orchestra Roster"
+        file: "src/content/about/orchestra.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Order on About Us page (1 = first)", name: "card_order", widget: "number" }
+          - { label: "Preview Image (shown on About Us page)", name: "card_image", widget: "image" }
+          - { label: "Header Image (shown on Orchestra page)", name: "header_image", widget: "image" }
+          - { label: "Short Description", name: "card_description", widget: "string" }
+          - { label: "Link Text", name: "card_link_text", widget: "string" }
+
+      - name: "join-us"
+        label: "Join Us"
+        file: "src/content/about/join-us.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - name: "plan-your-experience"
+        label: "Plan Your Experience"
+        file: "src/content/concerts/plan-your-experience.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - name: "support"
+        label: "Support Us"
+        file: "src/content/support.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - name: "contact"
+        label: "Contact"
+        file: "src/content/contact-us.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - name: "musician-resources"
+        label: "Musician Resources"
+        file: "src/content/musician-resources.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  # ── Concerts ─────────────────────────────────────────────────
+  - name: "concerts"
+    label: "Concerts"
+    files:
+      - name: "concerts"
+        label: "Concerts"
+        file: "src/content/concerts/concerts.md"
+        fields:
+          - label: "Concerts"
+            name: "concert_list"
+            widget: "list"
+            fields:
+              - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "MMMM D, YYYY", time_format: false }
+              - { label: "Concert Title", name: "title", widget: "string" }
+              - { label: "Time", name: "time", widget: "string", default: "3:00 PM" }
+              - { label: "Venue", name: "venue", widget: "string" }
+              - label: "Program"
+                name: "program"
+                widget: "list"
+                fields:
+                  - { label: "Composer", name: "composer", widget: "string" }
+                  - { label: "Work", name: "work", widget: "string" }
+                  - { label: "Soloist / Note", name: "soloist", widget: "string", required: false }
+
+  # ── Orchestra Members ─────────────────────────────────────────
+  - name: "orchestra-members"
+    label: "Orchestra Members"
+    files:
+      - name: "roster"
+        label: "Orchestra Roster"
+        file: "src/content/about/orchestra.md"
+        fields:
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Section Name (e.g. First Violin)", name: "name", widget: "string" }
+              - label: "Players"
+                name: "players"
+                widget: "list"
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - label: "Role"
+                    name: "role"
+                    widget: "select"
+                    required: false
+                    options:
+                      - { label: "Principal (*)", value: "principal" }
+                      - { label: "Assistant Principal (†)", value: "assistant" }
+                      - { label: "Rotating Principal (◆)", value: "rotating" }
+                      - { label: "Concertmaster", value: "concertmaster" }
+
+  # ── Videos ───────────────────────────────────────────────────
+  - name: "videos"
+    label: "YouTube Videos"
+    files:
+      - name: "videos"
+        label: "YouTube Videos"
+        file: "src/content/videos.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - label: "Videos"
+            name: "youtube_videos"
+            widget: "list"
+            fields:
+              - { label: "YouTube Video ID", name: "id", widget: "string", hint: "The part after ?v= in the YouTube URL" }
+              - { label: "Title / Caption", name: "title", widget: "string" }
+
+  # ── Site Settings ─────────────────────────────────────────────
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "site"
+        label: "Global Settings"
+        file: "src/_data/site.json"
+        extension: "json"
+        format: "json"
+        fields:
+          - { label: "Site Name", name: "name", widget: "string" }
+          - { label: "Tagline (shown under banner heading on home page)", name: "tagline", widget: "string" }
+          - { label: "Contact Email", name: "email", widget: "string" }
+          - { label: "Facebook URL", name: "facebook", widget: "string" }
+          - { label: "Instagram URL", name: "instagram", widget: "string" }
+          - { label: "YouTube URL", name: "youtube", widget: "string" }
+          - { label: "Formspree Form ID", name: "formspree_id", widget: "string" }
+          - { label: "PayPal Donation Email", name: "paypal_email", widget: "string" }
